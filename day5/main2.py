@@ -1,5 +1,4 @@
 import sys
-import math
 
 infile = sys.argv[1]
 seeds = []
@@ -19,27 +18,46 @@ with open(infile, "r") as f:
         else:
             continue
 
-seed_ranges = [(seeds[i], seeds[i + 1]) for i in range(0, len(seeds), 2)]
+seed_ranges = [(seeds[i], seeds[i] + seeds[i + 1]) for i in range(0, len(seeds), 2)]
 
 
-def find_item(item, input_map):
-    for mapping in input_map:
-        dest_start, source_start, range_size = mapping
-        if (item >= source_start) and (item < (source_start + range_size)):
-            return dest_start + item - source_start
+def intersect(range_a, range_b, debug=False):
+    off_bounds = []
+    lowest_lower_bound = min(range_a[0], range_b[0])
+    highest_lower_bound = max(range_a[0], range_b[0])
+    lowest_upper_bound = min(range_a[1] - 1, range_b[1] - 1)
+    highest_upper_bound = max(range_a[1] - 1, range_b[1] - 1)
+
+    intersection = (highest_lower_bound, lowest_upper_bound)
+
+    if intersection[0] > intersection[1]:
+        if debug:
+            print(f"Ranges:{range_a}, {range_b}")
+        return range_a, range_b
+    if lowest_lower_bound < intersection[0]:
+        off_bounds.append((lowest_lower_bound, intersection[0]))
+    if highest_upper_bound > intersection[1]:
+        off_bounds.append((intersection[1], highest_upper_bound))
+    if debug:
+        print(f"Intersecton: {intersection}; off-bounds: {off_bounds}")
+    return intersection, *off_bounds
+
+
+def find_item(item, source_range, dest_range):
+    if item in range(source_range[0], source_range[1]):
+        return dest_range[0] + item - source_range[0]
     return item
 
 
 results = []
-new_result = math.inf
 
-# This is a HORRIBLE idea. Don't run this.
+for key in maps:
+    for map_range in maps[key]:
+        source_range = (map_range[1], map_range[1] + map_range[2])
+        dest_range = (map_range[0], map_range[0] + map_range[2])
+        for seed_range in seed_ranges:
+            intersections = intersect(seed_range, source_range)
+            for i in intersections:
+                print(i)
 
-for seed_range in seed_ranges:
-    for seed in range(seed_range[0], sum(seed_range)):
-        result = seed
-        for key in maps:
-            result = find_item(result, maps[key])
-        new_result = min(result, new_result)
-
-print(new_result)
+print(results)
