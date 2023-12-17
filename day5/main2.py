@@ -25,8 +25,8 @@ def intersect(range_a, range_b, debug=False):
     off_bounds = []
     lowest_lower_bound = min(range_a[0], range_b[0])
     highest_lower_bound = max(range_a[0], range_b[0])
-    lowest_upper_bound = min(range_a[1] - 1, range_b[1] - 1)
-    highest_upper_bound = max(range_a[1] - 1, range_b[1] - 1)
+    lowest_upper_bound = min(range_a[1], range_b[1])
+    highest_upper_bound = max(range_a[1], range_b[1])
 
     intersection = (highest_lower_bound, lowest_upper_bound)
 
@@ -41,23 +41,3 @@ def intersect(range_a, range_b, debug=False):
     if debug:
         print(f"Intersecton: {intersection}; off-bounds: {off_bounds}")
     return intersection, *off_bounds
-
-
-def find_item(item, source_range, dest_range):
-    if item in range(source_range[0], source_range[1]):
-        return dest_range[0] + item - source_range[0]
-    return item
-
-
-results = []
-
-for key in maps:
-    for map_range in maps[key]:
-        source_range = (map_range[1], map_range[1] + map_range[2])
-        dest_range = (map_range[0], map_range[0] + map_range[2])
-        for seed_range in seed_ranges:
-            intersections = intersect(seed_range, source_range)
-            for i in intersections:
-                print(i)
-
-print(results)
