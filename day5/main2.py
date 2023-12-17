@@ -41,3 +41,5 @@ def intersect(range_a, range_b, debug=False):
     if debug:
         print(f"Intersecton: {intersection}; off-bounds: {off_bounds}")
     return intersection, *off_bounds
+
+# I'm giving up on this for now. Maybe indefinitely, we'll see.
