@@ -10,7 +10,7 @@ with open(infile, "r") as f:
         if "seeds" in line:
             seeds = [int(i) for i in line.split(":")[1].split()]
         elif "map" in line:
-            map_name = line.split()[0].replace("-", "_")
+            map_name = line.split()[0]
             maps[map_name] = []
         elif line.strip() and ":" not in line:
             nums = [int(i) for i in line.split()]
