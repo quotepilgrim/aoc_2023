@@ -1,6 +1,7 @@
 import re
+import sys
 
-infile = "input"
+infile = sys.argv[1]
 data = []
 
 with open(infile, "r") as f:

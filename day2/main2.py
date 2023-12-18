@@ -1,6 +1,7 @@
 import re
+import sys
 
-games = "input"
+games = sys.argv[1]
 powers = []
 
 
@@ -31,4 +32,4 @@ with open(games, "r") as f:
         result = parse_game(line)
         powers.append(result)
 
-print(powers, sum(powers))
+print(sum(powers))

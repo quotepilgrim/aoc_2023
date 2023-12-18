@@ -1,4 +1,6 @@
-infile = "input"
+import sys
+
+infile = sys.argv[1]
 
 digits = [
     "1",

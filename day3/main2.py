@@ -1,6 +1,7 @@
 import string
+import sys
 
-infile = "input"
+infile = sys.argv[1]
 digits = string.digits
 
 schematic = []

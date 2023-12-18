@@ -1,6 +1,7 @@
 import re
+import sys
 
-games = "input"
+games = sys.argv[1]
 max_cubes = {"red": 12, "green": 13, "blue": 14}
 valid_games = []
 
@@ -30,4 +31,4 @@ with open(games, "r") as f:
             valid_games.append(game_id)
 
 
-print(valid_games, sum(valid_games))
+print(sum(valid_games))
