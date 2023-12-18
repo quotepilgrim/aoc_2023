@@ -7,7 +7,7 @@ powers = []
 def parse_game(game):
     expr = "Game .*: (.*)"
     match = re.search(expr, game)
-    game = match.group(1).split(";")
+    game = match.group(1).split(";")  # type: ignore
 
     min_cubes = {"red": 0, "green": 0, "blue": 0}
 
