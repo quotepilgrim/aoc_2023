@@ -38,12 +38,12 @@ class Hand:
         else:
             return hand_kinds["high-card"]
 
-    def get_joker_kind(self, hand):
-        return max([self.get_hand_kind(hand.replace("J", i)) for i in cards[:-1]])
+    def get_joker_kind(self):
+        return max([self.get_hand_kind(self.hand.replace("J", i)) for i in cards[:-1]])
 
     def __gt__(self, other):
-        kind_a = self.get_joker_kind(self.hand)
-        kind_b = self.get_joker_kind(other.hand)
+        kind_a = self.get_joker_kind()
+        kind_b = other.get_joker_kind()
         if kind_a != kind_b:
             return True if kind_a > kind_b else False
         for i, j in zip(self.hand, other.hand):
