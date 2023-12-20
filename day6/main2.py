@@ -23,12 +23,9 @@ time = data["Time"]
 dist = data["Distance"]
 
 hold = 0
-wins = 0
 while hold < time:
     hold += 1
     if calculate(time, hold, dist):
-        wins += 1
-    elif wins > 0:
         break
 
-print(wins)
+print(time + 1 - hold * 2)

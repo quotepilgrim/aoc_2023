@@ -31,7 +31,8 @@ for i in range(len(data["Time"])):
     while hold < time:
         hold += 1
         if calculate(time, hold, dist):
-            wins += 1
+            wins = time + 1 - hold * 2
+            break
     race_wins.append(wins)
 
 print(math.prod(race_wins))
