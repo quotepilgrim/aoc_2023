@@ -13,8 +13,9 @@ with open(infile, "r") as f:
         data[name] = list(values)
 
 
-def calculate(time, speed, record):
-    remaining = time - speed
+def calculate(time, hold, record):
+    speed = hold
+    remaining = time - hold
     distance = speed * remaining
     return distance > record
 
@@ -26,10 +27,11 @@ for i in range(len(data["Time"])):
     dist = data["Distance"][i]
 
     hold = 0
-    while not calculate(time, hold, dist):
+    wins = 0
+    while hold < time:
         hold += 1
-    wins = time + 1 - hold * 2
-
+        if calculate(time, hold, dist):
+            wins += 1
     race_wins.append(wins)
 
 print(math.prod(race_wins))
