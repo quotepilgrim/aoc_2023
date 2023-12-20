@@ -1,5 +1,4 @@
 import sys
-import math
 
 infile = sys.argv[1]
 data = {}
@@ -20,8 +19,6 @@ def calculate(time, hold, record):
     return distance > record
 
 
-race_wins = []
-
 time = data["Time"]
 dist = data["Distance"]
 
@@ -33,6 +30,5 @@ while hold < time:
         wins += 1
     elif wins > 0:
         break
-race_wins.append(wins)
 
-print(math.prod(race_wins))
+print(race_wins)
