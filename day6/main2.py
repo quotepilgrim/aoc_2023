@@ -31,4 +31,4 @@ while hold < time:
     elif wins > 0:
         break
 
-print(race_wins)
+print(wins)
