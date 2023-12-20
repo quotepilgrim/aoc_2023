@@ -13,7 +13,7 @@ hand_kinds = {
     "high-card": 0,
 }
 
-cards = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
+cards = ["A", "K", "Q", "T", "9", "8", "7", "6", "5", "4", "3", "2", "J"]
 
 
 class Hand:
@@ -21,8 +21,8 @@ class Hand:
         self.hand = hand
         self.bid = bid
 
-    def get_hand_kind(self):
-        counts = sorted([self.hand.count(i) for i in set(self.hand)])
+    def get_hand_kind(self, hand):
+        counts = sorted([hand.count(i) for i in set(hand)])
         if 5 in counts:
             return hand_kinds["five-of-a-kind"]
         elif 4 in counts:
@@ -38,9 +38,12 @@ class Hand:
         else:
             return hand_kinds["high-card"]
 
+    def get_joker_kind(self, hand):
+        return max([self.get_hand_kind(hand.replace("J", i)) for i in cards[:-1]])
+
     def __gt__(self, other):
-        kind_a = self.get_hand_kind()
-        kind_b = other.get_hand_kind()
+        kind_a = self.get_joker_kind(self.hand)
+        kind_b = self.get_joker_kind(other.hand)
         if kind_a != kind_b:
             return True if kind_a > kind_b else False
         for i, j in zip(self.hand, other.hand):
