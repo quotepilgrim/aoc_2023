@@ -1,13 +1,26 @@
 import sys
 
-infile = sys.argv[1]
+infile = ""
 inlists = {}
+reverse = False
+
+args = sys.argv[1:]
+while len(args) > 0:
+    arg = args.pop(0)
+    if arg == "-r":
+        reverse = True
+    else:
+        infile = arg
 
 with open(infile, "r") as f:
     i = 0
     for line in f:
         inlists[i] = [[int(i) for i in line.strip().split()]]
         i += 1
+
+if reverse:
+    for k in inlists:
+        inlists[k][0].reverse()
 
 for k in inlists:
     while not all(i == 0 for i in inlists[k][-1]):
