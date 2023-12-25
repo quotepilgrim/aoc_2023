@@ -4,7 +4,7 @@ infile = ""
 inlists = {}
 reverse = False
 
-args = sys.argv[1:]
+args = sys.argv[1:3]
 while len(args) > 0:
     arg = args.pop(0)
     if arg == "-r":
@@ -38,4 +38,4 @@ result = 0
 for k in inlists:
     result += inlists[k][0][-1]
 
-print(inlists, result)
+print(result)
