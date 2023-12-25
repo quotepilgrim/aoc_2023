@@ -28,4 +28,4 @@ for k in starts:
         location = endpoints[points.index(location)][rule[starts[k] % rule_len]]
         starts[k] += 1
 
-print(math.lcm(*[starts[k] for k in starts]))
+print(math.lcm(*starts.values()))
