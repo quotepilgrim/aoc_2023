@@ -90,3 +90,43 @@ while queue:
         pass
 
 print(len(seen) / 2)
+
+# part 2
+
+loop = []
+
+for row in range(len(data)):
+    line = []
+    for col in range(len(data[0])):
+        if (row, col) in seen:
+            line.append(data[row][col])
+        else:
+            line.append("__")
+    loop.append(line)
+
+crossing = []
+inside = []
+
+count = 0
+
+for line in loop:
+    new_line = []
+    for i in line:
+        if "n" in i:
+            if "n" in crossing:
+                crossing.remove("n")
+            else:
+                crossing.append("n")
+        if "s" in i:
+            if "s" in crossing:
+                crossing.remove("s")
+            else:
+                crossing.append("s")
+        if "n" in crossing and "s" in crossing and i == "__":
+            new_line.append("#")
+            count += 1
+        else:
+            new_line.append("_")
+    inside.append(new_line)
+
+print(count)
