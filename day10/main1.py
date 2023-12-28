@@ -123,10 +123,10 @@ for line in loop:
             else:
                 crossing.append("s")
         if "n" in crossing and "s" in crossing and i == "__":
-            new_line.append("#")
+            # new_line.append("#")
             count += 1
-        else:
-            new_line.append("_")
+        # else:
+        #     new_line.append("_")
     inside.append(new_line)
 
 print(count)
