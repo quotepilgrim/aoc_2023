@@ -110,7 +110,7 @@ inside = []
 count = 0
 
 for line in loop:
-    new_line = []
+    # new_line = []
     for i in line:
         if "n" in i:
             if "n" in crossing:
