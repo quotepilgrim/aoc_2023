@@ -127,6 +127,6 @@ for line in loop:
             count += 1
         # else:
         #     new_line.append("_")
-    inside.append(new_line)
+    # inside.append(new_line)
 
 print(count)
