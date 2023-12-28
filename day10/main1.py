@@ -43,7 +43,7 @@ if "e" in data[start_row][start_col - 1]:
 
 data[start_row][start_col] = "".join(start_point)
 
-seen = [(start_row, start_col)]
+seen = {(start_row, start_col)}
 queue = [(start_row, start_col)]
 
 while queue:
@@ -54,7 +54,7 @@ while queue:
             and "s" in data[current[0] - 1][current[1]]
             and "n" in data[current[0]][current[1]]
         ):
-            seen.append((current[0] - 1, current[1]))
+            seen.add((current[0] - 1, current[1]))
             queue.append((current[0] - 1, current[1]))
     except IndexError:
         pass
@@ -64,7 +64,7 @@ while queue:
             and "w" in data[current[0]][current[1] + 1]
             and "e" in data[current[0]][current[1]]
         ):
-            seen.append((current[0], current[1] + 1))
+            seen.add((current[0], current[1] + 1))
             queue.append((current[0], current[1] + 1))
     except IndexError:
         pass
@@ -74,7 +74,7 @@ while queue:
             and "n" in data[current[0] + 1][current[1]]
             and "s" in data[current[0]][current[1]]
         ):
-            seen.append((current[0] + 1, current[1]))
+            seen.add((current[0] + 1, current[1]))
             queue.append((current[0] + 1, current[1]))
     except IndexError:
         pass
@@ -84,7 +84,7 @@ while queue:
             and "e" in data[current[0]][current[1] - 1]
             and "w" in data[current[0]][current[1]]
         ):
-            seen.append((current[0], current[1] - 1))
+            seen.add((current[0], current[1] - 1))
             queue.append((current[0], current[1] - 1))
     except IndexError:
         pass
