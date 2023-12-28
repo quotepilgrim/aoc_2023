@@ -89,4 +89,4 @@ while queue:
     except IndexError:
         pass
 
-print(len(seen)/2)
+print(len(seen) / 2)
