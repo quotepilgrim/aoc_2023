@@ -2,11 +2,12 @@ import sys
 
 infile = sys.argv[1]
 data = []
-row, col = 0, 0
 start_row, start_col = 0, 0
 
 with open(infile, "r") as f:
+    row = 0
     for line in f:
+        col = 0
         new_line = []
         for char in line.strip():
             if char == "-":
@@ -26,7 +27,6 @@ with open(infile, "r") as f:
                     start_row, start_col = row, col
                 new_line.append("__")
             col += 1
-        col = 0
         row += 1
         data.append(new_line)
 
@@ -108,7 +108,6 @@ crossing = []
 inside = []
 
 count = 0
-
 for line in loop:
     # new_line = []
     for i in line:
