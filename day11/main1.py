@@ -15,7 +15,7 @@ def expand(lst):
         return result
     result = add_rows(lst)
     result = add_rows(rot90(result))
-    return rot90(result, k=3)
+    return rot90(result, axes=(1, 0))
 
 
 def get_distance(g1, g2):
