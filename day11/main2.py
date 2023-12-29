@@ -29,8 +29,8 @@ def get_distance(g1, g2):
     h_exclams = list(data[0][left_edge:right_edge]).count("!")
     v_exclams = list(i[0] for i in data[top_edge:bottom_edge]).count("!")
 
-    h = abs(g1[0] - g2[0])
-    v = abs(g1[1] - g2[1])
+    v = abs(g1[0] - g2[0])
+    h = abs(g1[1] - g2[1])
 
     d = v + h + (h_exclams + v_exclams) * 999999
 
