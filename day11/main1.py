@@ -5,18 +5,16 @@ infile = sys.argv[1]
 data = []
 
 
-def expand_step(lst):
-    result = []
-    for i in lst:
-        result.append(i)
-        if "#" not in i:
-            result.append(i)
-    return result
-
-
 def expand(lst):
-    result = expand_step(lst)
-    result = expand_step(rot90(result))
+    def add_rows(lst):
+        result = []
+        for i in lst:
+            result.append(i)
+            if "#" not in i:
+                result.append(i)
+        return result
+    result = add_rows(lst)
+    result = add_rows(rot90(result))
     return rot90(result, k=3)
 
 
