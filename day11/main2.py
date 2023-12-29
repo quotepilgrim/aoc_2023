@@ -32,7 +32,7 @@ def get_distance(g1, g2):
     h = abs(g1[0] - g2[0])
     v = abs(g1[1] - g2[1])
 
-    d = v + h + (h_exclams + v_exclams) * 99
+    d = v + h + (h_exclams + v_exclams) * 999999
 
     return d
 
