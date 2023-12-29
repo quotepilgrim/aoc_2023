@@ -47,6 +47,6 @@ for g1 in galaxies:
         if g1 != g2:
             galaxy_pairs.add(tuple(sorted((g1, g2))))
 
-distances = [get_distance(*g) for g in galaxy_pairs]
+distances = [get_distance(*p) for p in galaxy_pairs]
 
 print(sum(distances))
